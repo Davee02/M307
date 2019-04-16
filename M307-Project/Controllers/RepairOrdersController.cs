@@ -86,6 +86,5 @@ namespace M307_Project.Controllers
             return View(viewModel);
         }
 
-        public DateTime Get
     }
 }
