@@ -61,11 +61,11 @@
     <script>
         $(document).ready(function () {
             let repairEndDateTextBox = document.querySelector('#repairEndDate');
-            repairEndDateTextBox.value = getNewRepairEndDateForSeverity("0");
+            repairEndDateTextBox.value = getNewRepairEndDateForSeverity("0", new Date());
 
             $('#RepairOrder_Severety').change(function () {
                 let currentValue = $(this).val();
-                repairEndDateTextBox.value = getNewRepairEndDateForSeverity(currentValue);
+                repairEndDateTextBox.value = getNewRepairEndDateForSeverity(currentValue, new Date());
             });
         });
     </script>

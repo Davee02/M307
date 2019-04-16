@@ -21,11 +21,14 @@
             <th>
                 @Html.DisplayNameFor(model => model.Tool)
             </th>
+            <th>
+                In deadline?
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Firstname)
@@ -36,6 +39,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Tool.ToolName)
             </td>
+            <td><script>getDeadlineEmoji('ere')</script></td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
             </td>
@@ -43,3 +47,17 @@
 }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        function getDeadlineEmoji(startDate) {
+            let repairEndDateTextBox = document.querySelector('#repairEndDate');
+
+            let enddate = getNewRepairEndDateForSeverity(document.querySelector("#RepairOrder_Severety").value);
+
+            return'👍';
+        }
+    </script>
+
+    @{await Html.RenderPartialAsync("_CustomScriptsPartial");}
+}

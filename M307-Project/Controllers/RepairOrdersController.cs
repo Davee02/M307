@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -57,6 +58,7 @@ namespace M307_Project.Controllers
         {
             if (ModelState.IsValid)
             {
+                repairOrder.RepairStartDateTime = DateTime.Now;
                 _context.Add(repairOrder);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
