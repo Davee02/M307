@@ -12,6 +12,8 @@ namespace M307_Project.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
+
+        [StringLength(200)]
         public string ToolName { get; set; }
     }
 }

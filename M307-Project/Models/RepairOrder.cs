@@ -14,16 +14,20 @@ namespace M307_Project.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(200)]
         public string Firstname { get; set; }
 
         [Required]
+        [StringLength(200)]
         public string Lastname { get; set; }
 
         [DataType(DataType.PhoneNumber)]
+        [StringLength(200)]
         public string Phone { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
+        [StringLength(200)]
         public string Email { get; set; }
 
         [Required]
