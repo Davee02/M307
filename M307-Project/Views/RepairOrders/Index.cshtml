@@ -18,6 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Lastname)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tool)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,7 +32,10 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Lastname)
-            </td>            
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tool.ToolName)
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
             </td>

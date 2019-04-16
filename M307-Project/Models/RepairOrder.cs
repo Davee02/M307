@@ -7,12 +7,6 @@ namespace M307_Project.Models
 {
     public class RepairOrder
     {
-        public RepairOrder()
-        {
-            Severety = Enums.Severety.Normal;
-            RepairStartDateTime = DateTime.Now;
-        }
-
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }

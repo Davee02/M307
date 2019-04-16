@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +22,7 @@ namespace M307_Project.Controllers
         public async Task<IActionResult> Index()
         {
             var pendingRepairOrders = await _context.RepairOrders
+                .Include(x => x.Tool)
                 .Where(x => x.RepairState == Enums.RepairState.Pending)
                 .OrderByDescending(x => x.Severety)
                 .ToListAsync();
@@ -86,6 +85,7 @@ namespace M307_Project.Controllers
             return View(viewModel);
         }
 
+        // GET: RepairOrders/Edit/5
         [HttpPost]
         public async Task<IActionResult> Edit(int id, RepairOrder repairOrder)
         {
@@ -101,7 +101,6 @@ namespace M307_Project.Controllers
 
                 return View(viewModel);
             }
-
 
             try
             {
