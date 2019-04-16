@@ -64,41 +64,14 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
         $(document).ready(function () {
-            setNewRepairEndDate(document.querySelector("#RepairOrder_Severety").value);
+            let repairEndDateTextBox = document.querySelector('#repairEndDate');
+
+            repairEndDateTextBox.value = getNewRepairEndDateForSeverity(document.querySelector("#RepairOrder_Severety").value);
         });
-
-        function setNewRepairEndDate(severity) {
-            let startDate = new Date();
-            let endDate;
-
-            switch (severity) {
-            case '0':
-                endDate = addDays(startDate, 25);
-                break;
-            case '1':
-                endDate = addDays(startDate, 20);
-                break;
-            case '3':
-                endDate = addDays(startDate, 10);
-                break;
-            case '4':
-                endDate = addDays(startDate, 5);
-                break;
-            default:
-                endDate = addDays(startDate, 15);
-                break;
-            }
-
-            document.querySelector('#repairEndDate').value = endDate.toLocaleDateString();
-        }
-
-        function addDays(date, days) {
-            var result = new Date(date);
-            result.setDate(result.getDate() + days);
-            return result;
-        }
     </script>
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_CustomScriptsPartial");}
 }
