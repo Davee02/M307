@@ -33,9 +33,6 @@ namespace M307_Project.Models
         public Tool Tool { get; set; }
 
         [Required]
-        public int ToolId { get; set; }
-
-        [Required]
         public Enums.RepairState RepairState { get; set; }
 
     }

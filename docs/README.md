@@ -45,7 +45,7 @@
 | Vorname             | Required                                       |
 | Nachname            | Required                                       |
 | Telefon             | Nur Ziffern, Leerzeichen, `+`, `-`, `(`und `)` |
-| E-Mail              | Muss ein `@`  enthalten                        |
+| E-Mail              | Muss ein `@` enthalten                        |
 | Dringlichkeit       | Required                                       |
 | Werkzeug            | Required                                       |
 | Status der Repratur | Required                                       |
