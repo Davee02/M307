@@ -1,8 +1,5 @@
 ﻿@model M307_Project.ViewModels.RepairOrderViewModel
 
-@{
-    ViewData["Title"] = "Create";
-}
 
 <h1>Create</h1>
 
@@ -61,11 +58,12 @@
     <script>
         $(document).ready(function () {
             let repairEndDateTextBox = document.querySelector('#repairEndDate');
-            repairEndDateTextBox.value = getNewRepairEndDateForSeverity("0");
+
+            repairEndDateTextBox.value = getNewRepairEndDateForSeverity("0", new Date()).toLocaleDateString();
 
             $('#RepairOrder_Severety').change(function () {
                 let currentValue = $(this).val();
-                repairEndDateTextBox.value = getNewRepairEndDateForSeverity(currentValue);
+                repairEndDateTextBox.value = getNewRepairEndDateForSeverity(currentValue, new Date()).toLocaleDateString();
             });
         });
     </script>

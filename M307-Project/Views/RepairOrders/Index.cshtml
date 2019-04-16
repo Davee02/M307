@@ -1,8 +1,20 @@
 ﻿@model IEnumerable<M307_Project.Models.RepairOrder>
 
-@{
-    ViewData["Title"] = "Index";
-}
+
+<script>
+    function writeDeadlineEmoji(severity, startDate) {
+        let endDate = getNewRepairEndDateForSeverity(severity, startDate);
+
+        if (endDate > new Date()) {
+            document.write('👍');
+        } else {
+            document.write('👎');
+        }
+    }
+</script>
+
+@{await Html.RenderPartialAsync("_CustomScriptsPartial");}
+
 
 <script>
     function finishOrders() {
@@ -34,30 +46,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.Tool)
             </th>
+            <th>
+                In deadline?
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <input type="checkbox" value="@item.Id" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Firstname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lastname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tool.ToolName)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                </td>
-            </tr>
-        }
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tool.ToolName)
+            </td>
+            <td><script>writeDeadlineEmoji('@((int)item.Severety)', '@item.RepairStartDateTime.ToString("yyyy-MM-ddTHH:mm:ss")')</script></td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
 <button type="button" class="btn btn-primary" onclick="finishOrders()">Finish orders</button>

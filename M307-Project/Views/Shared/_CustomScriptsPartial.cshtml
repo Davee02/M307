@@ -1,6 +1,5 @@
 <script>
-    function getNewRepairEndDateForSeverity(severity) {
-        let startDate = new Date();
+    function getNewRepairEndDateForSeverity(severity, startDate) {
         let endDate;
 
         switch (severity) {
@@ -21,7 +20,7 @@
                 break;
         }
 
-        return endDate.toLocaleDateString();
+        return endDate;
     }
 
     function addDays(date, days) {
