@@ -34,6 +34,7 @@ namespace M307_Project.Models
         public Tool Tool { get; set; }
 
         [Required]
+        [DisplayName("Tool")]
         public int ToolId { get; set; }
 
         [Required]

@@ -30,7 +30,7 @@ namespace M307_Project.Controllers
 
             return View(pendingRepairOrders);
         }
-   
+
 
         public async Task<IActionResult> Create()
         {
@@ -52,6 +52,8 @@ namespace M307_Project.Controllers
             }
 
             var viewModel = await GetRepairOrderViewModelWithAllTools();
+            viewModel.RepairOrder = repairOrder;
+
             return View(viewModel);
         }
 
@@ -70,6 +72,7 @@ namespace M307_Project.Controllers
 
             var viewModel = await GetRepairOrderViewModelWithAllTools();
             viewModel.RepairOrder = repairOrder;
+
             return View(viewModel);
         }
 
@@ -105,15 +108,16 @@ namespace M307_Project.Controllers
                     throw;
                 }
             }
-            return RedirectToAction(nameof(Index));
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         public async Task<IActionResult> FinishOrders(List<int> ids)
         {
-            foreach(int id in ids)
+            foreach (int id in ids)
             {
-                RepairOrder repairOrder = await _context.RepairOrders.FirstAsync(x => x.Id == id);
+                var repairOrder = await _context.RepairOrders.FirstAsync(x => x.Id == id);
                 repairOrder.RepairState = Enums.RepairState.Finished;
                 await _context.SaveChangesAsync();
             }
@@ -128,8 +132,8 @@ namespace M307_Project.Controllers
             var toolsSelectItems = allTools
                 .Select(x => new SelectListItem(x.ToolName, x.Id.ToString()))
                 .ToList();
-            var viewModel = new RepairOrderViewModel { AllTools = toolsSelectItems };
-            return viewModel;
+
+            return new RepairOrderViewModel { AllTools = toolsSelectItems };
         }
 
         private bool RepairOrderExists(int id)

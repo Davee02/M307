@@ -1,27 +1,27 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace M307_Project.Models
 {
-    public class Enums
+    public static class Enums
     {
         public enum Severety
         {
-            [DisplayName("Really low")]
+            [Display(Name = "Really low")]
             ReallyLow = 0,
-            [DisplayName("Low")]
+            [Display(Name = "Low")]
             Low = 1,
-            [DisplayName("Normal")]
+            [Display(Name = "Normal")]
             Normal = 2,
-            [DisplayName("High")]
+            [Display(Name = "High")]
             High = 3,
-            [DisplayName("Really high")]
+            [Display(Name = "Really high")]
             ReallyHigh = 4
         }
         public enum RepairState
         {
-            [DisplayName("Pending")]
+            [Display(Name = "Pending")]
             Pending = 0,
-            [DisplayName("Finished")]
+            [Display(Name = "Finished")]
             Finished = 1
         }
     }

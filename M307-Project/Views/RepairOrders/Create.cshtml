@@ -31,17 +31,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="RepairOrder.Severety" class="control-label"></label><br />
-                <select asp-for="RepairOrder.Severety" asp-items="Html.GetEnumSelectList<Enums.Severety>()"></select>
+                <select asp-for="RepairOrder.Severety" asp-items="Html.GetEnumSelectList<Enums.Severety>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
                 <span asp-validation-for="RepairOrder.Severety" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepairOrder.Tool" class="control-label"></label><br />
-                <select asp-for="RepairOrder.ToolId" asp-items="Model.AllTools"></select>
-                <span asp-validation-for="RepairOrder.Tool" class="text-danger"></span>
+                <label asp-for="RepairOrder.ToolId" class="control-label"></label><br />
+                <select asp-for="RepairOrder.ToolId" asp-items="Model.AllTools" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="RepairOrder.ToolId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Repair end-date</label><br />
-                <input disabled id="repairEndDate" />
+                <input disabled id="repairEndDate" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -67,7 +71,7 @@
             });
         });
     </script>
-    
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     @{await Html.RenderPartialAsync("_CustomScriptsPartial");}
 }

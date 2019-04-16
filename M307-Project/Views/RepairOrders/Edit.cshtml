@@ -10,6 +10,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="RepairOrder.Id" />
+            <input type="hidden" asp-for="RepairOrder.RepairStartDateTime" />
             <div class="form-group">
                 <label asp-for="RepairOrder.Firstname" class="control-label"></label>
                 <input asp-for="RepairOrder.Firstname" class="form-control" />
@@ -31,23 +32,23 @@
                 <span asp-validation-for="RepairOrder.Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepairOrder.Severety" class="control-label"></label><br />
-                <select disabled asp-for="RepairOrder.Severety" asp-items="Html.GetEnumSelectList<Enums.Severety>()"></select>
+                <label asp-for="RepairOrder.Severety" class="control-label"></label>
+                <select disabled asp-for="RepairOrder.Severety" asp-items="Html.GetEnumSelectList<Enums.Severety>()" class="form-control"></select>
                 <span asp-validation-for="RepairOrder.Severety" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepairOrder.RepairState" class="control-label"></label><br />
-                <select asp-for="RepairOrder.RepairState" asp-items="Html.GetEnumSelectList<Enums.RepairState>()"></select>
+                <label asp-for="RepairOrder.RepairState" class="control-label"></label>
+                <select asp-for="RepairOrder.RepairState" asp-items="Html.GetEnumSelectList<Enums.RepairState>()" class="form-control"></select>
                 <span asp-validation-for="RepairOrder.RepairState" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepairOrder.Tool" class="control-label"></label><br />
-                <select asp-for="RepairOrder.ToolId" asp-items="Model.AllTools"></select>
-                <span asp-validation-for="RepairOrder.Tool" class="text-danger"></span>
+                <label asp-for="RepairOrder.ToolId" class="control-label"></label>
+                <select asp-for="RepairOrder.ToolId" asp-items="Model.AllTools" class="form-control"></select>
+                <span asp-validation-for="RepairOrder.ToolId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Repair end-date</label><br />
-                <input disabled id="repairEndDate" />
+                <input disabled id="repairEndDate" class="form-control"/>
             </div>
             <div class="form-group">
                 <input type="submit" value="Edit" class="btn btn-primary" />
