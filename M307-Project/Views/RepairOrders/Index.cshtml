@@ -25,8 +25,10 @@
             allIds.push(element.value);
         });
 
-        $.post("/RepairOrders/FinishOrders", { ids: allIds });
-        location.reload(true);
+        if (allIds.length > 0) {
+            $.post("/RepairOrders/FinishOrders", { ids: allIds });
+            location.reload(true);
+        }
     }
 </script>
 
@@ -55,32 +57,33 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model) {
-        <tr>
-            <td>
-                <label class="mostBeautifulCheckboxEver">
-                    <input type="checkbox" value="@item.Id" />
-                    <span class="mostBeautifulCheckmarkEver"></span>
-                </label>    
-                @*<input type="checkbox" value="@item.Id" />*@
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Firstname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lastname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tool.ToolName)
-            </td>
-            <td>
-                <script>writeDeadlineEmoji('@((int) item.Severety)', '@item.RepairStartDateTime.ToString("yyyy-MM-ddTHH:mm:ss")')</script>
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <label class="mostBeautifulCheckboxEver">
+                        <input type="checkbox" value="@item.Id" />
+                        <span class="mostBeautifulCheckmarkEver"></span>
+                    </label>
+                    @*<input type="checkbox" value="@item.Id" />*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tool.ToolName)
+                </td>
+                <td>
+                    <script>writeDeadlineEmoji('@((int) item.Severety)', '@item.RepairStartDateTime.ToString("yyyy-MM-ddTHH:mm:ss")')</script>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 <button type="button" class="btn btn-primary" onclick="finishOrders()">Finish selected orders</button>
