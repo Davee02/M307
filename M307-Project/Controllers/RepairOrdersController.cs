@@ -6,6 +6,7 @@ using M307_Project.Data;
 using M307_Project.Models;
 using M307_Project.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace M307_Project.Controllers
 {
@@ -124,6 +125,18 @@ namespace M307_Project.Controllers
         private bool RepairOrderExists(int id)
         {
             return _context.RepairOrders.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FinishOrders(List<int> ids)
+        {
+            foreach(int id in ids)
+            {
+                RepairOrder repairOrder = await _context.RepairOrders.FirstAsync(x => x.Id == id);
+                repairOrder.RepairState = Enums.RepairState.Finished;
+                await _context.SaveChangesAsync();
+            }
+            return View();
         }
     }
 }
