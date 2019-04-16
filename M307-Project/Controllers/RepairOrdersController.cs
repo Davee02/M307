@@ -48,7 +48,8 @@ namespace M307_Project.Controllers
                 repairOrder.RepairStartDateTime = DateTime.Now;
                 _context.Add(repairOrder);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return RedirectToAction("Index");
             }
 
             var viewModel = await GetRepairOrderViewModelWithAllTools();
@@ -117,7 +118,10 @@ namespace M307_Project.Controllers
         {
             foreach (int id in ids)
             {
-                var repairOrder = await _context.RepairOrders.FirstAsync(x => x.Id == id);
+                var repairOrder = await _context.RepairOrders.FindAsync(id);
+                if (repairOrder == null)
+                    return NotFound($"The repair order with the id {id} could not be found");
+
                 repairOrder.RepairState = Enums.RepairState.Finished;
                 await _context.SaveChangesAsync();
             }
