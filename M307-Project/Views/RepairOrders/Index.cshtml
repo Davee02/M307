@@ -58,7 +58,11 @@
         @foreach (var item in Model) {
         <tr>
             <td>
-                <input type="checkbox" value="@item.Id" />
+                <label class="mostBeautifulCheckboxEver">
+                    <input type="checkbox" value="@item.Id" />
+                    <span class="mostBeautifulCheckmarkEver"></span>
+                </label>    
+                @*<input type="checkbox" value="@item.Id" />*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Firstname)
