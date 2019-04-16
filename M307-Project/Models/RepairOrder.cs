@@ -1,15 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace M307_Project.Models
 {
     public class RepairOrder
     {
+        public RepairOrder()
+        {
+            Severety = Enums.Severety.Normal;
+            RepairStartDateTime = DateTime.Now;
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
@@ -42,6 +45,9 @@ namespace M307_Project.Models
         [Required]
         [DisplayName("Repair status")]
         public Enums.RepairState RepairState { get; set; }
+
+        [Required]
+        public DateTime RepairStartDateTime { get; set; }
 
     }
 }

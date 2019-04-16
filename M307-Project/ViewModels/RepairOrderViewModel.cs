@@ -9,5 +9,7 @@ namespace M307_Project.ViewModels
         public RepairOrder RepairOrder { get; set; }
 
         public List<SelectListItem> AllTools { get; set; }
+
+        public bool RepairIsInDeadline { get; set; }
     }
 }
