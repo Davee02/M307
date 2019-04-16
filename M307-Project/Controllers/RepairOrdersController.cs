@@ -20,7 +20,6 @@ namespace M307_Project.Controllers
             _context = context;
         }
 
-        // GET: RepairOrders
         public async Task<IActionResult> Index()
         {
             var pendingRepairOrders = await _context.RepairOrders
@@ -33,7 +32,6 @@ namespace M307_Project.Controllers
         }
    
 
-        // GET: RepairOrders/Create
         public async Task<IActionResult> Create()
         {
             var viewModel = await GetRepairOrderViewModelWithAllTools();
@@ -41,18 +39,6 @@ namespace M307_Project.Controllers
             return View(viewModel);
         }
 
-        private async Task<RepairOrderViewModel> GetRepairOrderViewModelWithAllTools()
-        {
-            var allTools = await _context.Tools.ToListAsync();
-
-            var toolsSelectItems = allTools
-                .Select(x => new SelectListItem(x.ToolName, x.Id.ToString()))
-                .ToList();
-            var viewModel = new RepairOrderViewModel {AllTools = toolsSelectItems};
-            return viewModel;
-        }
-
-        // POST: RepairOrders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RepairOrder repairOrder)
@@ -69,7 +55,6 @@ namespace M307_Project.Controllers
             return View(viewModel);
         }
 
-        // GET: RepairOrders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -88,7 +73,6 @@ namespace M307_Project.Controllers
             return View(viewModel);
         }
 
-        // POST: RepairOrders/Edit/5
         [HttpPost]
         public async Task<IActionResult> Edit(int id, RepairOrder repairOrder)
         {
@@ -124,11 +108,6 @@ namespace M307_Project.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RepairOrderExists(int id)
-        {
-            return _context.RepairOrders.Any(e => e.Id == id);
-        }
-
         [HttpPost]
         public async Task<IActionResult> FinishOrders(List<int> ids)
         {
@@ -138,7 +117,24 @@ namespace M307_Project.Controllers
                 repairOrder.RepairState = Enums.RepairState.Finished;
                 await _context.SaveChangesAsync();
             }
-            return View();
+
+            return RedirectToAction("Index");
+        }
+
+        private async Task<RepairOrderViewModel> GetRepairOrderViewModelWithAllTools()
+        {
+            var allTools = await _context.Tools.ToListAsync();
+
+            var toolsSelectItems = allTools
+                .Select(x => new SelectListItem(x.ToolName, x.Id.ToString()))
+                .ToList();
+            var viewModel = new RepairOrderViewModel { AllTools = toolsSelectItems };
+            return viewModel;
+        }
+
+        private bool RepairOrderExists(int id)
+        {
+            return _context.RepairOrders.Any(e => e.Id == id);
         }
     }
 }
