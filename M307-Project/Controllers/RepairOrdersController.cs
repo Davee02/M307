@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using M307_Project.Data;
 using M307_Project.Models;
@@ -50,11 +47,9 @@ namespace M307_Project.Controllers
         }
 
         // POST: RepairOrders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Firstname,Lastname,Phone,Email,Severety,RepairState")] RepairOrder repairOrder)
+        public async Task<IActionResult> Create(RepairOrder repairOrder)
         {
             if (ModelState.IsValid)
             {
@@ -82,11 +77,9 @@ namespace M307_Project.Controllers
         }
 
         // POST: RepairOrders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Firstname,Lastname,Phone,Email,Severety,RepairState")] RepairOrder repairOrder)
+        public async Task<IActionResult> Edit(int id, RepairOrder repairOrder)
         {
             if (id != repairOrder.Id)
             {
