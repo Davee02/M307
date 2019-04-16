@@ -56,7 +56,7 @@ namespace M307_Project
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=RepairOrders}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace M307_Project.Models
         public Tool Tool { get; set; }
 
         [Required]
+        [DisplayName("Repair status")]
         public Enums.RepairState RepairState { get; set; }
 
     }
