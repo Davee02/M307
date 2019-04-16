@@ -1,4 +1,4 @@
-﻿@model M307_Project.Models.RepairOrder
+﻿@model M307_Project.ViewModels.RepairOrderViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,42 +6,48 @@
 
 <h1>Edit</h1>
 
-<h4>RepairOrder</h4>
+<h4>Repair order</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="RepairOrder.Id" />
             <div class="form-group">
-                <label asp-for="Firstname" class="control-label"></label>
-                <input asp-for="Firstname" class="form-control" />
-                <span asp-validation-for="Firstname" class="text-danger"></span>
+                <label asp-for="RepairOrder.Firstname" class="control-label"></label>
+                <input asp-for="RepairOrder.Firstname" class="form-control" />
+                <span asp-validation-for="RepairOrder.Firstname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Lastname" class="control-label"></label>
-                <input asp-for="Lastname" class="form-control" />
-                <span asp-validation-for="Lastname" class="text-danger"></span>
+                <label asp-for="RepairOrder.Lastname" class="control-label"></label>
+                <input asp-for="RepairOrder.Lastname" class="form-control" />
+                <span asp-validation-for="RepairOrder.Lastname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
+                <label asp-for="RepairOrder.Phone" class="control-label"></label>
+                <input asp-for="RepairOrder.Phone" class="form-control" />
+                <span asp-validation-for="RepairOrder.Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="RepairOrder.Email" class="control-label"></label>
+                <input asp-for="RepairOrder.Email" class="form-control" />
+                <span asp-validation-for="RepairOrder.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Severety" class="control-label"></label>
-                <select asp-for="Severety" class="form-control"></select>
-                <span asp-validation-for="Severety" class="text-danger"></span>
+                <label asp-for="RepairOrder.RepairState" class="control-label"></label><br />
+
+                @Html.RadioButtonFor(x => x.RepairOrder.RepairState, Enums.RepairState.Pending)
+                <label for="@Enums.RepairState.Pending">Pending</label><br />
+
+                @Html.RadioButtonFor(x => x.RepairOrder.RepairState, Enums.RepairState.Finished)
+                <label for="@Enums.RepairState.Finished">Finished</label>
+
+                <span asp-validation-for="RepairOrder.RepairState" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepairState" class="control-label"></label>
-                <select asp-for="RepairState" class="form-control"></select>
-                <span asp-validation-for="RepairState" class="text-danger"></span>
+                <label asp-for="RepairOrder.Tool" class="control-label"></label><br />
+                <select asp-for="RepairOrder.ToolId" asp-items="Model.AllTools"></select>
+                <span asp-validation-for="RepairOrder.Tool" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

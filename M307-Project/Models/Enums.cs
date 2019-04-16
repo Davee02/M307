@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace M307_Project.Models
 {
@@ -9,15 +6,22 @@ namespace M307_Project.Models
     {
         public enum Severety
         {
+            [DisplayName("Really low")]
             ReallyLow = 0,
+            [DisplayName("Low")]
             Low = 1,
+            [DisplayName("Normal")]
             Normal = 2,
+            [DisplayName("High")]
             High = 3,
+            [DisplayName("Really high")]
             ReallyHigh = 4
         }
         public enum RepairState
         {
+            [DisplayName("Pending")]
             Pending = 0,
+            [DisplayName("Finished")]
             Finished = 1
         }
     }

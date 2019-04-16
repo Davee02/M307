@@ -22,26 +22,14 @@ namespace M307_Project.Controllers
         // GET: RepairOrders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RepairOrders.ToListAsync());
+            var pendingRepairOrders = await _context.RepairOrders
+                .Where(x => x.RepairState == Enums.RepairState.Pending)
+                .OrderByDescending(x => x.Severety)
+                .ToListAsync();
+
+            return View(pendingRepairOrders);
         }
-
-        // GET: RepairOrders/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var repairOrder = await _context.RepairOrders
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (repairOrder == null)
-            {
-                return NotFound();
-            }
-
-            return View(repairOrder);
-        }
+   
 
         // GET: RepairOrders/Create
         public async Task<IActionResult> Create()
@@ -91,47 +79,10 @@ namespace M307_Project.Controllers
             {
                 return NotFound();
             }
-            return View(repairOrder);
-        }
 
-        // POST: RepairOrders/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, RepairOrder repairOrder)
-        {
-            if (id != repairOrder.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(repairOrder);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RepairOrderExists(repairOrder.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(repairOrder);
-        }
-
-
-
-        private bool RepairOrderExists(int id)
-        {
-            return _context.RepairOrders.Any(e => e.Id == id);
+            var viewModel = await GetRepairOrderViewModelWithAllTools();
+            viewModel.RepairOrder = repairOrder;
+            return View(viewModel);
         }
     }
 }
