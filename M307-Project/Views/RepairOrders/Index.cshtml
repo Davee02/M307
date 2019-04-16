@@ -4,6 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
+<script>
+    function writeDeadlineEmoji(severity, startDate) {
+        let endDate = getNewRepairEndDateForSeverity(severity, startDate);
+
+        if (endDate > new Date()) {
+            document.write('👍');
+        } else {
+            document.write('👎');
+        }
+    }
+</script>
+
+@{await Html.RenderPartialAsync("_CustomScriptsPartial");}
+
 <h1>Index</h1>
 
 <p>
@@ -39,7 +53,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Tool.ToolName)
             </td>
-            <td><script>getDeadlineEmoji('ere')</script></td>
+            <td><script>writeDeadlineEmoji('@((int)item.Severety)'
+                , '@item.RepairStartDateTime.ToString("yyyy-MM-ddTHH:mm:ss")')</script></td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
             </td>
@@ -49,15 +64,5 @@
 </table>
 
 @section Scripts {
-    <script>
-        function getDeadlineEmoji(startDate) {
-            let repairEndDateTextBox = document.querySelector('#repairEndDate');
 
-            let enddate = getNewRepairEndDateForSeverity(document.querySelector("#RepairOrder_Severety").value);
-
-            return'👍';
-        }
-    </script>
-
-    @{await Html.RenderPartialAsync("_CustomScriptsPartial");}
 }
