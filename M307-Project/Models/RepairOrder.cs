@@ -34,8 +34,10 @@ namespace M307_Project.Models
         [Required]
         public Enums.Severety Severety { get; set; }
 
-        [Required]
         public Tool Tool { get; set; }
+
+        [Required]
+        public int ToolId { get; set; }
 
         [Required]
         [DisplayName("Repair status")]

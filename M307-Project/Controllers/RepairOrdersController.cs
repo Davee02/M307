@@ -1,9 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using M307_Project.Data;
 using M307_Project.Models;
+using M307_Project.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace M307_Project.Controllers
 {
@@ -41,9 +44,22 @@ namespace M307_Project.Controllers
         }
 
         // GET: RepairOrders/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var viewModel = await GetRepairOrderViewModelWithAllTools();
+
+            return View(viewModel);
+        }
+
+        private async Task<RepairOrderViewModel> GetRepairOrderViewModelWithAllTools()
+        {
+            var allTools = await _context.Tools.ToListAsync();
+
+            var toolsSelectItems = allTools
+                .Select(x => new SelectListItem(x.ToolName, x.Id.ToString()))
+                .ToList();
+            var viewModel = new RepairOrderViewModel {AllTools = toolsSelectItems};
+            return viewModel;
         }
 
         // POST: RepairOrders/Create
@@ -57,7 +73,9 @@ namespace M307_Project.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(repairOrder);
+
+            var viewModel = await GetRepairOrderViewModelWithAllTools();
+            return View(viewModel);
         }
 
         // GET: RepairOrders/Edit/5
@@ -109,7 +127,7 @@ namespace M307_Project.Controllers
             return View(repairOrder);
         }
 
-       
+
 
         private bool RepairOrderExists(int id)
         {

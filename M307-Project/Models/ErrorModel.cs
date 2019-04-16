@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace M307_Project.Models
 {
-    public class ErrorViewModel
+    public class ErrorModel
     {
         [Required]
         public string RequestId { get; set; }

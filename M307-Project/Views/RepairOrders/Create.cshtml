@@ -1,4 +1,4 @@
-﻿@model M307_Project.Models.RepairOrder
+﻿@model M307_Project.ViewModels.RepairOrderViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,36 +13,59 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Firstname" class="control-label"></label>
-                <input asp-for="Firstname" class="form-control" />
-                <span asp-validation-for="Firstname" class="text-danger"></span>
+                <label asp-for="RepairOrder.Firstname" class="control-label"></label>
+                <input asp-for="RepairOrder.Firstname" class="form-control" />
+                <span asp-validation-for="RepairOrder.Firstname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Lastname" class="control-label"></label>
-                <input asp-for="Lastname" class="form-control" />
-                <span asp-validation-for="Lastname" class="text-danger"></span>
+                <label asp-for="RepairOrder.Lastname" class="control-label"></label>
+                <input asp-for="RepairOrder.Lastname" class="form-control" />
+                <span asp-validation-for="RepairOrder.Lastname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
+                <label asp-for="RepairOrder.Email" class="control-label"></label>
+                <input asp-for="RepairOrder.Email" class="form-control" />
+                <span asp-validation-for="RepairOrder.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="RepairOrder.Phone" class="control-label"></label>
+                <input asp-for="RepairOrder.Phone" class="form-control" />
+                <span asp-validation-for="RepairOrder.Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Severety" class="control-label"></label><br />
-                <input type="radio" name="Severety" value="ReallyLow" />  Really low<br />
-                <input type="radio" name="Severety" value="Low" />  low<br />
-                <span asp-validation-for="Severety" class="text-danger"></span>
+                <label asp-for="RepairOrder.Severety" class="control-label"></label><br />
+                @Html.RadioButtonFor(x => x.RepairOrder.Severety, Enums.Severety.ReallyLow)
+                <label for="@Enums.Severety.ReallyLow">Really low</label><br/>
+
+                @Html.RadioButtonFor(x => x.RepairOrder.Severety, Enums.Severety.Low)
+                <label for="@Enums.Severety.Low">Low</label><br />
+
+                @Html.RadioButtonFor(x => x.RepairOrder.Severety, Enums.Severety.Normal)
+                <label for="@Enums.Severety.Normal">Normal</label><br />
+
+                @Html.RadioButtonFor(x => x.RepairOrder.Severety, Enums.Severety.High)
+                <label for="@Enums.Severety.High">High</label><br />
+
+                @Html.RadioButtonFor(x => x.RepairOrder.Severety, Enums.Severety.ReallyHigh)
+                <label for="@Enums.Severety.ReallyHigh">Really high</label>
+
+                <span asp-validation-for="RepairOrder.Severety" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepairState" class="control-label"></label><br />
-                <input type="radio" name="RepairState" value="Pending" />  Pending<br />
-                <input type="radio" name="RepairState" value="Finished" />  Finished<br />
-                <span asp-validation-for="RepairState" class="text-danger"></span>
+                <label asp-for="RepairOrder.RepairState" class="control-label"></label><br />
+
+                @Html.RadioButtonFor(x => x.RepairOrder.RepairState, Enums.RepairState.Pending)
+                <label for="@Enums.RepairState.Pending">Pending</label><br />
+
+                @Html.RadioButtonFor(x => x.RepairOrder.RepairState, Enums.RepairState.Finished)
+                <label for="@Enums.RepairState.Finished">Finished</label>
+
+                <span asp-validation-for="RepairOrder.RepairState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepairOrder.Tool" class="control-label"></label><br />
+                <select asp-for="RepairOrder.ToolId" asp-items="Model.AllTools"></select>
+                <span asp-validation-for="RepairOrder.Tool" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
