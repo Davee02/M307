@@ -1,8 +1,5 @@
 ﻿@model M307_Project.ViewModels.RepairOrderViewModel
 
-@{
-    ViewData["Title"] = "Edit";
-}
 
 <h1>Edit</h1>
 
@@ -64,15 +61,5 @@
 </div>
 
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-            let repairEndDateTextBox = document.querySelector('#repairEndDate');
 
-            repairEndDateTextBox.value = getNewRepairEndDateForSeverity(document.querySelector("#RepairOrder_Severety").value
-                , new Date('@Model.RepairOrder.RepairStartDateTime.ToString("yyyy-MM-ddTHH:mm:ss")')).toLocaleDateString();
-        });
-    </script>
-
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    @{await Html.RenderPartialAsync("_CustomScriptsPartial");}
 }

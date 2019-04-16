@@ -87,7 +87,7 @@ namespace M307_Project.Controllers
             return View(viewModel);
         }
 
-        // GET: RepairOrders/Edit/5
+        // POST: RepairOrders/Edit/5
         [HttpPost]
         public async Task<IActionResult> Edit(int id, RepairOrder repairOrder)
         {
