@@ -33,34 +33,9 @@
                 <span asp-validation-for="RepairOrder.Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepairOrder.Severety" class="control-label"></label><br />
-                @Html.RadioButtonFor(x => x.RepairOrder.Severety, Enums.Severety.ReallyLow)
-                <label for="@Enums.Severety.ReallyLow">Really low</label><br />
-
-                @Html.RadioButtonFor(x => x.RepairOrder.Severety, Enums.Severety.Low)
-                <label for="@Enums.Severety.Low">Low</label><br />
-
-                @Html.RadioButtonFor(x => x.RepairOrder.Severety, Enums.Severety.Normal)
-                <label for="@Enums.Severety.Normal">Normal</label><br />
-
-                @Html.RadioButtonFor(x => x.RepairOrder.Severety, Enums.Severety.High)
-                <label for="@Enums.Severety.High">High</label><br />
-
-                @Html.RadioButtonFor(x => x.RepairOrder.Severety, Enums.Severety.ReallyHigh)
-                <label for="@Enums.Severety.ReallyHigh">Really high</label>
-
+                <label asp-for="RepairOrder.Severety" class="control-label"></label><br />              
+                <select asp-for="RepairOrder.Severety" asp-items="Html.GetEnumSelectList<Enums.Severety>()"></select>
                 <span asp-validation-for="RepairOrder.Severety" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RepairOrder.RepairState" class="control-label"></label><br />
-
-                @Html.RadioButtonFor(x => x.RepairOrder.RepairState, Enums.RepairState.Pending)
-                <label for="@Enums.RepairState.Pending">Pending</label><br />
-
-                @Html.RadioButtonFor(x => x.RepairOrder.RepairState, Enums.RepairState.Finished)
-                <label for="@Enums.RepairState.Finished">Finished</label>
-
-                <span asp-validation-for="RepairOrder.RepairState" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RepairOrder.Tool" class="control-label"></label><br />
@@ -69,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Repair end-date</label><br />
-                <select asp-for="RepairOrder.ToolId" asp-items="Model.AllTools"></select>
+                <input disabled id="repairEndDate"/>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -84,4 +59,45 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            setNewRepairEndDate("Normal");
+
+            $('#RepairOrder_Severety').change(function () {
+                let currentValue = $(this).val();
+                setNewRepairEndDate(currentValue);
+            });
+        });
+
+        function setNewRepairEndDate(severity) {
+            let startDate = new Date();
+            let endDate;
+
+            switch (severity) {
+                case '0':
+                    endDate = addDays(startDate, 25);
+                    break;
+                case '1':
+                    endDate = addDays(startDate, 20);
+                    break;
+                case '3':
+                    endDate = addDays(startDate, 10);
+                    break;
+                case '4':
+                    endDate = addDays(startDate, 5);
+                    break;
+                default:
+                    endDate = addDays(startDate, 15);
+                    break;
+            }
+
+            document.querySelector('#repairEndDate').value = endDate.toLocaleDateString();
+        }
+
+        function addDays(date, days) {
+            var result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return result;
+        }
+    </script>
 }

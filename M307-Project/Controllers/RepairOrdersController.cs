@@ -86,6 +86,45 @@ namespace M307_Project.Controllers
             return View(viewModel);
         }
 
-        public DateTime Get
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, RepairOrder repairOrder)
+        {
+            if (id != repairOrder.Id)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var viewModel = await GetRepairOrderViewModelWithAllTools();
+                viewModel.RepairOrder = repairOrder;
+
+                return View(viewModel);
+            }
+
+
+            try
+            {
+                _context.Update(repairOrder);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RepairOrderExists(repairOrder.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool RepairOrderExists(int id)
+        {
+            return _context.RepairOrders.Any(e => e.Id == id);
+        }
     }
 }

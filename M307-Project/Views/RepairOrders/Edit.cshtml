@@ -12,7 +12,6 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="RepairOrder.Id" />
             <div class="form-group">
                 <label asp-for="RepairOrder.Firstname" class="control-label"></label>
                 <input asp-for="RepairOrder.Firstname" class="form-control" />
@@ -24,24 +23,23 @@
                 <span asp-validation-for="RepairOrder.Lastname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RepairOrder.Phone" class="control-label"></label>
-                <input asp-for="RepairOrder.Phone" class="form-control" />
-                <span asp-validation-for="RepairOrder.Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="RepairOrder.Email" class="control-label"></label>
                 <input asp-for="RepairOrder.Email" class="form-control" />
                 <span asp-validation-for="RepairOrder.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="RepairOrder.Phone" class="control-label"></label>
+                <input asp-for="RepairOrder.Phone" class="form-control" />
+                <span asp-validation-for="RepairOrder.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepairOrder.Severety" class="control-label"></label><br />
+                <select disabled asp-for="RepairOrder.Severety" asp-items="Html.GetEnumSelectList<Enums.Severety>()"></select>
+                <span asp-validation-for="RepairOrder.Severety" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="RepairOrder.RepairState" class="control-label"></label><br />
-
-                @Html.RadioButtonFor(x => x.RepairOrder.RepairState, Enums.RepairState.Pending)
-                <label for="@Enums.RepairState.Pending">Pending</label><br />
-
-                @Html.RadioButtonFor(x => x.RepairOrder.RepairState, Enums.RepairState.Finished)
-                <label for="@Enums.RepairState.Finished">Finished</label>
-
+                <select asp-for="RepairOrder.RepairState" asp-items="Html.GetEnumSelectList<Enums.RepairState>()"></select>
                 <span asp-validation-for="RepairOrder.RepairState" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -50,7 +48,11 @@
                 <span asp-validation-for="RepairOrder.Tool" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label class="control-label">Repair end-date</label><br />
+                <input disabled id="repairEndDate" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -62,4 +64,40 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            setNewRepairEndDate(document.querySelector("#RepairOrder_Severety"));
+        });
+
+        function setNewRepairEndDate(severity) {
+            let startDate = new Date();
+            let endDate;
+
+            switch (severity) {
+            case '0':
+                endDate = addDays(startDate, 25);
+                break;
+            case '1':
+                endDate = addDays(startDate, 20);
+                break;
+            case '3':
+                endDate = addDays(startDate, 10);
+                break;
+            case '4':
+                endDate = addDays(startDate, 5);
+                break;
+            default:
+                endDate = addDays(startDate, 15);
+                break;
+            }
+
+            document.querySelector('#repairEndDate').value = endDate.toLocaleDateString();
+        }
+
+        function addDays(date, days) {
+            var result = new Date(date);
+            result.setDate(result.getDate() + days);
+            return result;
+        }
+    </script>
 }
