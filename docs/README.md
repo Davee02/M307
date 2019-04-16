@@ -85,6 +85,6 @@
 | 7      | Ich bin auf dem Create-Formular | wenn ich auf dem Formular bin                              | ist bei Dringlichkeit schon ein Default ausgewählt                            |
 | 8      | Ich bin auf der Edit-Formular   | wenn ich auf "edit" klicke                                 | Sollen alle Felder gemäss oben definiert validiert werden                     |
 | 9      | Ich bin auf der Create-Formular | wenn ich auf "Severety" ändere                             | wird das Enddatum angepasst und das Startdatum wird auf heute gesetzt         |
-| 10     | Ich bin auf der Startseite      | wenn ich auf "new order" klicke                            | öffnet sich das Create-Formular                                               |
+| 10     | Ich bin auf der Edit-Formular   | wenn ich auf dem Formular bin                              | Sollen die bestimmten Felder(Severety, Reoair end-date) nicht editierbar sein |
 
 ## Testbericht
