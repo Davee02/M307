@@ -65,10 +65,10 @@
 
     <script>
         $(document).ready(function () {
-            let repairEndDateTextBox = document.querySelector('#repairEndDate');
+            const repairEndDateTextBox = document.querySelector('#repairEndDate');
 
             $('#RepairOrder_Severety').change(function () {
-                let currentValue = $(this).val();
+                const currentValue = $(this).val();
                 repairEndDateTextBox.value = getNewRepairEndDateForSeverity(currentValue, new Date()).toLocaleDateString();
             });
         });

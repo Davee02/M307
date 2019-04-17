@@ -67,7 +67,7 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            let repairEndDateTextBox = document.querySelector('#repairEndDate');
+            const repairEndDateTextBox = document.querySelector('#repairEndDate');
             repairEndDateTextBox.value = getNewRepairEndDateForSeverity(document.querySelector("#RepairOrder_Severety").value
                 , new Date('@Model.RepairOrder.RepairStartDateTime.ToString("yyyy-MM-ddTHH:mm:ss")')).toLocaleDateString();
         });

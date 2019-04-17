@@ -3,7 +3,7 @@
 
 <script>
     function writeDeadlineEmoji(severity, startDate) {
-        let endDate = getNewRepairEndDateForSeverity(severity, startDate);
+        const endDate = getNewRepairEndDateForSeverity(severity, startDate);
 
         if (endDate > new Date()) {
             document.write('👍');
