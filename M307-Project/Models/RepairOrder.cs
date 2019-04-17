@@ -20,6 +20,7 @@ namespace M307_Project.Models
         public string Lastname { get; set; }
 
         [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^[\d\s\-\+\(\)\/]*$", ErrorMessage = "The phone-number can only contain numbers, whitespaces and the characters +-/()")]
         [StringLength(200)]
         public string Phone { get; set; }
 
