@@ -122,3 +122,9 @@ body {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+.easter-egg {
+    height: 20px;
+    width: 20px;
+    margin-left: -150px;
+}
