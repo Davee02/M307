@@ -89,3 +89,16 @@
 | 10     | Ich bin auf der Edit-Formular   | ich auf dem Formular bin                              | sollen die bestimmten Felder (Severety, Repair end-date) nicht editierbar sein |
 
 ## Testbericht
+
+| Nummer | Testresultat                        |
+|--------|-------------------------------------|
+| 1      | Test wurde erfolgreich durchgeführt |
+| 2      | Test wurde erfolgreich durchgeführt |
+| 4      | Test wurde erfolgreich durchgeführt |
+| 4      | Test wurde erfolgreich durchgeführt |
+| 5      | Test wurde erfolgreich durchgeführt |
+| 6      | Test wurde erfolgreich durchgeführt |
+| 7      | Test wurde erfolgreich durchgeführt |
+| 8      | Test wurde erfolgreich durchgeführt |
+| 9      | Test wurde erfolgreich durchgeführt |
+| 10     | Test wurde erfolgreich durchgeführt |
