@@ -3,21 +3,21 @@
         let endDate;
 
         switch (severity) {
-            case '0':
-                endDate = addDays(startDate, 25);
-                break;
-            case '1':
-                endDate = addDays(startDate, 20);
-                break;
-            case '3':
-                endDate = addDays(startDate, 10);
-                break;
-            case '4':
-                endDate = addDays(startDate, 5);
-                break;
-            default:
-                endDate = addDays(startDate, 15);
-                break;
+        case '0':
+            endDate = addDays(startDate, 25);
+            break;
+        case '1':
+            endDate = addDays(startDate, 20);
+            break;
+        case '3':
+            endDate = addDays(startDate, 10);
+            break;
+        case '4':
+            endDate = addDays(startDate, 5);
+            break;
+        default:
+            endDate = addDays(startDate, 15);
+            break;
         }
 
         return endDate;
