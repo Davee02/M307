@@ -36,9 +36,6 @@
 
 <h1>Overview</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -67,7 +64,6 @@
                         <input type="checkbox" value="@item.Id" />
                         <span class="mostBeautifulCheckmarkEver"></span>
                     </label>
-                    @*<input type="checkbox" value="@item.Id" />*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Firstname)
