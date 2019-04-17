@@ -124,7 +124,15 @@ body {
 }
 
 .easter-egg {
-    height: 20px;
-    width: 20px;
-    margin-left: -150px;
+    height: 2px;
+    width: 1px;
+    margin-left: 700px;
+    min-width: 1px;
+    background-color: #black;
+    border: none;
+}
+
+.canvasEasterEgg {
+    border: 1px solid #d3d3d3;
+    background-color: #f1f1f1;
 }
