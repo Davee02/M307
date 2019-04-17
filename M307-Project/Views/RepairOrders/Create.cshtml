@@ -62,7 +62,7 @@
 </div>
 
 @section Scripts {
-
+    <script src="/js/site.js"></script>
     <script>
         $(document).ready(function () {
             const repairEndDateTextBox = document.querySelector('#repairEndDate');
@@ -75,6 +75,5 @@
     </script>
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    @{await Html.RenderPartialAsync("_CustomScriptsPartial");}
     <recaptcha-script validation-message-element-id="recaptchaErrorMessage" />
 }

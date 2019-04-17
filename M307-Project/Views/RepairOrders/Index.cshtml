@@ -1,38 +1,7 @@
 ﻿@model IEnumerable<M307_Project.Models.RepairOrder>
 
 
-<script>
-    function writeDeadlineEmoji(severity, startDate) {
-        const endDate = getNewRepairEndDateForSeverity(severity, startDate);
-
-        if (endDate > new Date()) {
-            document.write('👍');
-        } else {
-            document.write('👎');
-        }
-    }
-</script>
-
-@{await Html.RenderPartialAsync("_CustomScriptsPartial");}
-
-
-<script>
-    function finishOrders() {
-        let checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
-        let allIds = [];
-
-        checkboxes.forEach(function (element) {
-            allIds.push(element.value);
-        });
-
-        if (allIds.length > 0) {
-            $.post("/RepairOrders/FinishOrders", { ids: allIds })
-                .always(function () {
-                    location.reload(true);
-                });
-        }
-    }
-</script>
+<script src="/js/site.js"></script>
 
 <h1>Overview</h1>
 
@@ -50,6 +19,9 @@
                 @Html.DisplayNameFor(model => model.Tool)
             </th>
             <th>
+                End-date
+            </th>
+            <th>
                 In deadline?
             </th>
             <th></th>
@@ -58,29 +30,32 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <label class="mostBeautifulCheckboxEver">
-                        <input type="checkbox" value="@item.Id" />
-                        <span class="mostBeautifulCheckmarkEver"></span>
-                    </label>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Firstname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lastname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tool.ToolName)
-                </td>
-                <td>
-                    <script>writeDeadlineEmoji('@((int) item.Severety)', '@item.RepairStartDateTime.ToString("yyyy-MM-ddTHH:mm:ss")')</script>
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <label class="mostBeautifulCheckboxEver">
+                    <input type="checkbox" value="@item.Id" />
+                    <span class="mostBeautifulCheckmarkEver"></span>
+                </label>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tool.ToolName)
+            </td>
+            <td>
+                <script>document.write(getNewRepairEndDateForSeverity('@((int) item.Severety)', '@item.RepairStartDateTime.ToString("yyyy-MM-ddTHH:mm:ss")').toLocaleDateString())</script>
+            </td>
+            <td>
+                <script>writeDeadlineEmoji('@((int) item.Severety)', '@item.RepairStartDateTime.ToString("yyyy-MM-ddTHH:mm:ss")')</script>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
