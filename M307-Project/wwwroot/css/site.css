@@ -122,3 +122,17 @@ body {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+.easter-egg {
+    height: 2px;
+    width: 1px;
+    margin-left: 700px;
+    min-width: 1px;
+    background-color: #black;
+    border: none;
+}
+
+.canvasEasterEgg {
+    border: 1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
