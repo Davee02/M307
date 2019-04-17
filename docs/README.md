@@ -45,7 +45,7 @@
 | Vorname             | Required                                       |
 | Nachname            | Required                                       |
 | Telefon             | Nur Ziffern, Leerzeichen, `+`, `-`, `(`und `)` |
-| E-Mail              | Muss ein `@` enthalten                         |
+| E-Mail              | Muss ein `@` enthalten, Required               |
 | Dringlichkeit       | Required                                       |
 | Werkzeug            | Required                                       |
 | Status der Repratur | Required                                       |
@@ -54,16 +54,17 @@
 
 **Tabelle `RepairOrders`**
 
-| Feld-Bezeichnungen | Datentyp      |
-|--------------------|---------------|
-| Id                 | int           |
-| Firstname          | nvarchar(200) |
-| Lastname           | nvarchar(200) |
-| Phone              | nvarchar(200) |
-| Email              | nvarchar(200) |
-| Severety           | int           |
-| Tool               | int           |
-| RepairState        | int           |
+| Feld-Bezeichnungen  | Datentyp      |
+|---------------------|---------------|
+| Id                  | int           |
+| Firstname           | nvarchar(200) |
+| Lastname            | nvarchar(200) |
+| Phone               | nvarchar(200) |
+| Email               | nvarchar(200) |
+| Severety            | int           |
+| Tool                | int           |
+| RepairState         | int           |
+| RepairStartDateTime | dateTime2     |
 
 **Tabelle `Tools`**
 
@@ -74,17 +75,17 @@
 
 ### Testfälle
 
-| Nummer | Gegeben sei                     | Wenn                                                       | Dann                                                                          |
-|--------|---------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------|
-| 1      | Ich bin auf der Startseite      | ich auf "edit" klicke                                      | öffnet das Edit-Formular                                                      |
-| 2      | Ich bin auf der Startseite      | wenn ich auf "new order" klicke                            | öffnet sich das Create-Formular                                               |
-| 4      | Ich bin auf dem Create-Formular | wenn ich den Vornamen eingebe und auf "create" klicke      | wird das Feld korrekt Validiert                                               |
-| 4      | Ich bin auf dem Create-Formular | wenn ich den Nachnamen eingebe und auf "create" klicke     | wird das Feld korrekt Validiert                                               |
-| 5      | Ich bin auf dem Create-Formular | wenn ich die Telefonnummer eingebe und auf "create" klicke | wird das Feld korrekt Validiert(Nur Ziffern, Leerzeichen, `+`, `-`, `(`, `)`) |
-| 6      | Ich bin auf dem Create-Formular | wenn ich die Email eingebe und auf "create" klicke         | wird das Feld korrekt Validiert(enthält ein "@")                              |
-| 7      | Ich bin auf dem Create-Formular | wenn ich auf dem Formular bin                              | ist bei Dringlichkeit schon ein Default ausgewählt                            |
-| 8      | Ich bin auf der Edit-Formular   | wenn ich auf "edit" klicke                                 | Sollen alle Felder gemäss oben definiert validiert werden                     |
-| 9      | Ich bin auf der Create-Formular | wenn ich auf "Severety" ändere                             | wird das Enddatum angepasst und das Startdatum wird auf heute gesetzt         |
-| 10     | Ich bin auf der Edit-Formular   | wenn ich auf dem Formular bin                              | Sollen die bestimmten Felder(Severety, Reoair end-date) nicht editierbar sein |
+| Nummer | Gegeben sei                     | Wenn                                                  | Dann                                                                           |
+|--------|---------------------------------|-------------------------------------------------------|--------------------------------------------------------------------------------|
+| 1      | Ich bin auf der Startseite      | ich auf "edit" klicke                                 | öffnet das Edit-Formular                                                       |
+| 2      | Ich bin auf der Startseite      | ich auf "create new" klicke                           | öffnet sich das Create-Formular                                                |
+| 4      | Ich bin auf dem Create-Formular | ich den Vornamen eingebe und auf "create" klicke      | wird das Feld korrekt validiert                                                |
+| 4      | Ich bin auf dem Create-Formular | ich den Nachnamen eingebe und auf "create" klicke     | wird das Feld korrekt validiert                                                |
+| 5      | Ich bin auf dem Create-Formular | ich die Telefonnummer eingebe und auf "create" klicke | wird das Feld korrekt validiert (Nur Ziffern, Leerzeichen, `+`, `-`, `(`, `)`) |
+| 6      | Ich bin auf dem Create-Formular | ich die Email eingebe und auf "create" klicke         | wird das Feld korrekt validiert (enthält ein `@`)                              |
+| 7      | Ich bin auf dem Create-Formular | ich auf dem Formular bin                              | steht bei der Dringlichkeit `Please select`                                    |
+| 8      | Ich bin auf der Edit-Formular   | ich auf "edit" klicke                                 | sollen alle Felder gemäss oben definiert validiert werden                      |
+| 9      | Ich bin auf der Create-Formular | ich auf "Severety" ändere                             | wird das Enddatum angepasst                                                    |
+| 10     | Ich bin auf der Edit-Formular   | ich auf dem Formular bin                              | sollen die bestimmten Felder (Severety, Repair end-date) nicht editierbar sein |
 
 ## Testbericht
