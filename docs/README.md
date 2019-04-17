@@ -12,14 +12,14 @@
 
 ##### Datentypen
 
-| Feld                  | Datentyp                          |
-|-----------------------|-----------------------------------|
-| Vorname               | string                            |
-| Nachname              | string                            |
-| Email-Adresse         | string                            |
-| Telefon               | string                            |
-| Dringlichkeit         | Einfach-Auswahl durch Radiobutton |
-| Betreffendes Werkzeug | Einfach-Auswahl durch Combobox    |
+| Feld                  | Datentyp                       |
+|-----------------------|--------------------------------|
+| Vorname               | string                         |
+| Nachname              | string                         |
+| Email-Adresse         | string                         |
+| Telefon               | string                         |
+| Dringlichkeit         | Einfach-Auswahl durch Combobox |
+| Betreffendes Werkzeug | Einfach-Auswahl durch Combobox |
 
 #### Bestehende Reparatur bearbeiten
 
@@ -29,26 +29,26 @@
 
 ##### Datentypen
 
-| Feld                 | Datentyp                          |
-|----------------------|-----------------------------------|
-| Vorname              | string                            |
-| Nachname             | string                            |
-| Email-Adresse        | string                            |
-| Telefon              | string                            |
-| Status der Reparatur | Einfach-Auswahl durch Radiobutton |
-| Werkzeug             | Einfach-Auswahl durch Combobox    |
+| Feld                 | Datentyp                       |
+|----------------------|--------------------------------|
+| Vorname              | string                         |
+| Nachname             | string                         |
+| E-Mail               | string                         |
+| Telefon              | string                         |
+| Status der Reparatur | Einfach-Auswahl durch Combobox |
+| Werkzeug             | Einfach-Auswahl durch Combobox |
 
 ### Validierung
 
-| Formularfeld        | Validierungen                                  |
-|---------------------|------------------------------------------------|
-| Vorname             | Required                                       |
-| Nachname            | Required                                       |
-| Telefon             | Nur Ziffern, Leerzeichen, `+`, `-`, `(`und `)` |
-| E-Mail              | Muss ein `@` enthalten, Required               |
-| Dringlichkeit       | Required                                       |
-| Werkzeug            | Required                                       |
-| Status der Repratur | Required                                       |
+| Formularfeld         | Validierungen                                  |
+|----------------------|------------------------------------------------|
+| Vorname              | Required                                       |
+| Nachname             | Required                                       |
+| Telefon              | Nur Ziffern, Leerzeichen, `+`, `-`, `(`und `)` |
+| E-Mail               | Muss ein `@` enthalten, Required               |
+| Dringlichkeit        | Required                                       |
+| Werkzeug             | Required                                       |
+| Status der Reparatur | Required                                       |
 
 ### Datenbank
 
