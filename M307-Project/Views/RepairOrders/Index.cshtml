@@ -3,7 +3,7 @@
 
 <script>
     function writeDeadlineEmoji(severity, startDate) {
-        let endDate = getNewRepairEndDateForSeverity(severity, startDate);
+        const endDate = getNewRepairEndDateForSeverity(severity, startDate);
 
         if (endDate > new Date()) {
             document.write('👍');
@@ -68,7 +68,6 @@
                         <input type="checkbox" value="@item.Id" />
                         <span class="mostBeautifulCheckmarkEver"></span>
                     </label>
-                    @*<input type="checkbox" value="@item.Id" />*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Firstname)
@@ -90,4 +89,3 @@
     </tbody>
 </table>
 <button type="button" class="btn btn-primary" onclick="finishOrders()">Finish selected orders</button>
-

@@ -21,15 +21,23 @@ namespace M307_Project.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var pendingRepairOrders = await _context.RepairOrders
+            var pendingRepairOrders = _context.RepairOrders
                 .Include(x => x.Tool)
-                .Where(x => x.RepairState == Enums.RepairState.Pending)
-                .OrderByDescending(x => x.Severety)
-                .ToListAsync();
+                .Where(x => x.RepairState == Enums.RepairState.Pending);
 
-            return View(pendingRepairOrders);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                pendingRepairOrders = pendingRepairOrders.Where(x =>
+                    x.Firstname.Contains(searchString) || 
+                    x.Lastname.Contains(searchString) ||
+                    x.Tool.ToolName.Contains(searchString));
+            }
+
+            pendingRepairOrders = pendingRepairOrders.OrderByDescending(x => x.Severety);
+
+            return View(await pendingRepairOrders.ToListAsync());
         }
 
 
