@@ -35,9 +35,7 @@ namespace M307_Project.Controllers
                     x.Tool.ToolName.Contains(searchString));
             }
 
-            pendingRepairOrders = pendingRepairOrders.OrderByDescending(x => x.Severety);
-
-            return View(await pendingRepairOrders.ToListAsync());
+            return View(await pendingRepairOrders.OrderByDescending(x => x.Severety).ToListAsync());
         }
 
 

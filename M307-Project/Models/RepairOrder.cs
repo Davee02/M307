@@ -30,6 +30,7 @@ namespace M307_Project.Models
         public string Email { get; set; }
 
         [Required]
+        [DisplayName("Severity")]
         public Enums.Severety Severety { get; set; }
 
         public Tool Tool { get; set; }
