@@ -8,6 +8,7 @@ using M307_Project.Models;
 using M307_Project.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace M307_Project.Controllers
 {
@@ -41,6 +42,7 @@ namespace M307_Project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateRecaptcha]
         public async Task<IActionResult> Create(RepairOrder repairOrder)
         {
             if (ModelState.IsValid)
@@ -78,6 +80,8 @@ namespace M307_Project.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateRecaptcha]
         public async Task<IActionResult> Edit(int id, RepairOrder repairOrder)
         {
             if (id != repairOrder.Id)
