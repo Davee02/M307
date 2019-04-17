@@ -139,11 +139,6 @@ namespace M307_Project.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult EasterEgg()
-        {
-            return View("EasterEgg");
-        }
-
         private async Task<RepairOrderViewModel> GetRepairOrderViewModelWithAllTools()
         {
             var allTools = await _context.Tools.ToListAsync();
